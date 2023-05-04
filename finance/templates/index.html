@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+    <div class="section">
+
+        <h2>Bought!</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Symbol</th>
+                    <th>Name</th>
+                    <th>Shares</th>
+                    <th>Price</th>
+                    <th>TOTAL</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for purchase in purchases %}
+                    <tr>
+                        <td>{{ purchase["symbol"] }}</td>
+                        <td>{{ purchase["name"] }}</td>
+                        <td>{{ purchase["shares"] }}</td>
+                        <td>{{ purchase["price"] | float | usd }}</td>
+                        <td>{{ ((purchase["shares"] | int) * (purchase["price"] |float)) | usd }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4">Cash</td>
+                    <td>{{ user["cash"] | float | usd}}</td>
+                </tr>
+                <tr>
+                    <td colspan="4">Total</td>
+                    <td>{{ user["total"] | float | usd }}</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+{% endblock %}

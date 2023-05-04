@@ -1,0 +1,50 @@
+#logo {
+  display: block;
+  margin-top: 2%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
+  aspect-ratio: 1 / 1;
+}
+
+#menu-button {
+  background-color: #baf;
+  margin-left: 1%;
+  margin-top: 1%;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 5%;
+  margin-left: 5%;
+  margin-right: 5%;
+  font-size: 200%;
+  line-height: 180%;
+  font-weight: bold;
+}
+
+h2 {
+  text-align: center;
+  margin-left: 5%;
+  margin-right: 5%;
+  font-size: 140%;
+  line-height: 140%;
+  font-weight: bold;
+}
+
+.intro-container {
+  text-align: center;
+  margin: 5%;
+  font-size: 180%;
+  font-weight: bold;
+}
+
+#hobbies {
+  color: #ffffff;
+  text-align: left;
+  font-size: 180%;
+}
+
+#icons {
+  margin: 10%;
+}

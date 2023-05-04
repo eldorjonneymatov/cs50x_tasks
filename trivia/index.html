@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Trivia!</title>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                let wrongButtons = document.getElementsByClassName('wrong-choice');
+                let correctButton = document.getElementById('correct-choice');
+                let check1 = document.getElementById("check1");
+                let answer2 = document.getElementById("answer2");
+                let checkButton2 = document.getElementById("check-button2");
+                let check2 = document.getElementById("check2");
+
+                function incorrect(event) {
+                    event.target.style.backgroundColor = "red";
+                    check1.innerHTML = "Incorrect";
+                }
+
+                for (let i = 0; i < wrongButtons.length; i++) {
+                    wrongButtons[i].addEventListener('click', incorrect);
+                }
+
+                correctButton.addEventListener('click', function() {
+                    correctButton.style.backgroundColor = "green";
+                    check1.innerHTML = "correct";
+                });
+
+                checkButton2.addEventListener('click', function() {
+                    // alert("x");
+                    let text = answer2.value;
+                    if (text.toLowerCase() === "mercury") {
+                        answer2.style.backgroundColor = "green";
+                        check2.innerHTML = "correct";
+                    }
+                    else {
+                        answer2.style.backgroundColor = "red";
+                        check2.innerHTML = "incorrect";
+                    }
+                });
+            });
+
+        </script>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+            <div class="section">
+                <h2>Part 1: Multiple Choice </h2>
+                <hr>
+                <h3>What is the approximate ratio of people to sheep in New Zealand?</h3>
+                <p id="check1"></p>
+                <div>
+                    <button class="wrong-choice">6 people per 1 sheep</button>
+                    <button class="wrong-choice">3 people per 1 sheep</button>
+                    <button class="wrong-choice">1 person per 1 sheep</button>
+                    <button class="wrong-choice">1 person per 3 sheep</button>
+                    <button id="correct-choice">1 person per 6 sheep</button>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+                <h3>What is the name of the smallest planet in our solar system?</h3>
+                <p id="check2"></p>
+                <div>
+                    <input type="text" id="answer2">
+                    <button id="check-button2">Check Answer</button>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

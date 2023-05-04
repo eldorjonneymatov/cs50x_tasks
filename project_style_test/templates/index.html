@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block style %}
+.channel-info-box {
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    background-color: #f1f1f1;
+    padding: 40px;
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-bottom: 15px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+    background-color: #333333;
+  }
+h1 {
+    font-size:64px;
+}
+h3 {
+    font-size: 36px;
+}
+p {
+    font-size:24px;
+    color: #FFFFFF;
+}
+{% endblock %}
+
+{% block main %}
+    <div class="section">
+        <h1>CHANNELS</h1>
+        {% for chat in channels %}
+        <div class="channel-info-box">
+            <a href="https://t.me//{{ chat['username'] }}"><h3>{{chat['title']}}</h3></a>
+            <p>{{ chat['about'] }}</p>
+        </div>
+        {% endfor %}
+        <form action="/messages" method="post">
+            <div><button class="btn btn-primary btn-lg btn-block" type="submit">Show Messages</button></form></div>
+        </form>
+    </div>
+{% endblock %}

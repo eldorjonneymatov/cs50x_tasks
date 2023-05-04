@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flask Loading Example</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Flask Loading Example</h1>
+    <form action="/s">
+    <button id="start-task" type="submit">Start Task</button>
+  </form>
+    <div id="loading-spinner" style="display: none;">
+        <img src="/static/loading.gif" alt="loading_image">
+        <p>Loading...</p>
+    </div>
+    <div id="result"></div>
+
+    <script>
+        $(document).ready(function() {
+            $('#start-task').click(function() {
+                $('#loading-spinner').show();
+                $.get('/s', function(data) {
+                    $('#loading-spinner').hide();
+                    $('#result').text(data);
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
+

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, width=device-width">
+        <title id="title">Validation</title>
+        <style>
+            body {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                margin: 0;
+                background-color: #333333;
+            }
+            form {
+                max-width: 600px;
+                width: 100%;
+                padding: 20px;
+                border: 1px solid #ccc;
+            }
+            label {
+                font-size: 24px;
+                display: block;
+                margin-bottom: 10px;
+                color: #D3D3D3;
+            }
+            input {
+                text-align: center;
+                display: block;
+                margin-bottom: 20px;
+                width: 100%;
+                font-size: 64px;
+                padding: 10px;
+                box-sizing: border-box;
+                
+            }
+            button {
+                display: block;
+                margin: 0 auto;
+                width: 400px;
+                height: 80px;
+                font-size: 24px;
+                background-color: blue;
+                color: white;
+                border: 0;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+            button:hover {
+                background-color: navy;
+            }
+            .spinner {
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                border: 5px solid rgba(255, 255, 255, 0.3);
+                border-top-color: #ffffff;
+                animation: spin 1s linear infinite;
+            }
+            @keyframes spin {
+                to { transform: rotate(360deg); }
+            }
+        </style>
+    </head>
+    </body id="body">
+    <form action="/confirm" method="post">
+        <label for="validation-code">Enter validation code:</label>
+        <input autocomplete="off" autofocus type="text" id="confirm_code" name="confirm" pattern="[0-9]{5}" maxlength="5">
+        <button id="start_task" type="submit">Verify</button>
+    </form>
+    <form action="/send_verification" method="post">
+        <button type="submit">Resend code</button>
+    </form>
+    <div class="spinner" id="loading_spinner"></div>
+    <script>
+        $(document).ready(function() {
+            $('#start_task').click(function() {
+                $('#loading_spinner').show();
+                $.get('/confirm', function(data) {
+                    $('#loading_spinner').hide();
+                    $('#body').html(data);
+                    $('#title').text('Registered');
+                });
+            });
+        });
+    </script>
+    </body>
+</html>

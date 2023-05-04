@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block style %}
+.channel-info-box {
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    background-color: #f1f1f1;
+    padding: 40px;
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-bottom: 15px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+    background-color: #333333;
+  }
+h1 {
+    font-size:64px;
+}
+h3 {
+    font-size: 36px;
+}
+p {
+    font-size:24px;
+    color: #FFFFFF;
+}
+.spinner {
+    position: absolute;
+    left: 48%;
+    width: 4%;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    border: 5px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #ffffff;
+    animation: spin 1s linear infinite;
+}
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+{% endblock %}
+
+{% block main %}
+    <div class="section">
+        <h1>CHANNELS</h1>
+
+        {% for chat in channels %}
+        <div class="channel-info-box">
+            <a href="https://t.me//{{ chat['username'] }}"><h3>{{chat['title']}}</h3></a>
+        </div>
+        {% endfor %}
+
+        <form action="/messages" method="post">
+            <div><button class="btn btn-primary btn-lg btn-block" type="submit" id="start-task3">Show Messages</button></form></div>
+        </form>
+        <div class="spinner" id="loading_spinner" hidden></div>
+    <script>
+        $(document).ready(function() {
+            $('#start-task3').click(function() {
+                $('#loading_spinner').show();
+                $.get('/messages', function(data) {
+                    $('#loading_spinner').hide();
+                    $('#body').html(data);
+                    $('#title').text('Messages');
+                });
+            });
+        });
+    </script>
+{% endblock %}

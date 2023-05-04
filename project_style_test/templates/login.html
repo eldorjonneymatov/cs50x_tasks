@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block style %}
+    #body {
+        background-color: #333333;
+    }
+    .spinner {
+        position: absolute;
+        left: 48%;
+        width: 4%;
+        aspect-ratio: 1/1;
+        border-radius: 50%;
+        border: 5px solid rgba(255, 255, 255, 0.3);
+        border-top-color: #ffffff;
+        animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+        to { transform: rotate(360deg); }
+    }
+{% endblock %}
+
+{% block main %}
+    <form action="/login" method="post">
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="phone" name="phone" placeholder="Phone" type="text">
+        </div>
+        <div class="mb-3">
+            <input class="form-control mx-auto w-auto" id="password" name="password" placeholder="Password" type="password">
+        </div>
+        <button class="btn btn-primary" type="submit" id="start_task2">Log In</button>
+    </form>
+        <div class="spinner" id="loading_spinner" hidden></div>
+    <script>
+        $(document).ready(function() {
+            $('#start_task2').click(function() {
+                $('#loading-info').show();
+                $.get('/login', function(data) {
+                    $('#loading-info').hide();
+                    $('#body').html(data);
+                    $('#title').text('Index');
+                });
+            });
+        });
+    </script>
+{% endblock %}
